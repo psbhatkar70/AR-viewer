@@ -19,7 +19,7 @@ export function CustomerMenu() {
   const [dishes, setDishes] = useState<MenuDish[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-    const [activeArDishId, setActiveArDishId] = useState<string | null>(null);
+  const [activeArDishId, setActiveArDishId] = useState<string | null>(null);
   useEffect(() => {
     async function fetchMenu() {
       if (!restaurant_id) {
@@ -89,42 +89,50 @@ export function CustomerMenu() {
         ))}
       </div>
       {/* --- AR Iframe Modal Overlay --- */}
+      {/* --- AR Iframe Modal Overlay --- */}
       {activeArDishId && (
         <div style={{
           position: 'fixed',
           top: 0,
           left: 0,
-          width: '100vw',
-          height: '100vh',
+          width: '100%',
+          height: '100%', // Use 100% instead of 100vh to avoid mobile toolbar clipping
           backgroundColor: 'black',
-          zIndex: 9999, // Ensure it sits on top of everything
-          display: 'flex',
-          flexDirection: 'column'
+          zIndex: 9999, 
         }}>
           
-          {/* Header bar with a Close button */}
-          <div style={{ padding: '15px', backgroundColor: '#222', textAlign: 'right' }}>
-            <button 
-              onClick={() => setActiveArDishId(null)} // Close the modal
-              style={{
-                padding: '10px 20px',
-                backgroundColor: '#dc3545',
-                color: 'white',
-                border: 'none',
-                borderRadius: '4px',
-                fontWeight: 'bold',
-                cursor: 'pointer'
-              }}
-            >
-              ✕ Close AR View
-            </button>
-          </div>
+          {/* Floating Close Button - Absolutely positioned OVER the iframe */}
+          <button 
+            onClick={() => setActiveArDishId(null)} 
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              zIndex: 10000, // Must be higher than the container
+              padding: '12px 20px',
+              backgroundColor: 'rgba(220, 53, 69, 0.9)', // Slight transparency looks modern
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.5)', // Drop shadow ensures visibility over any AR background
+              backdropFilter: 'blur(4px)' // Optional: Premium glassmorphism effect
+            }}
+          >
+            ✕ Close
+          </button>
 
           {/* The PlayCanvas Iframe */}
           <iframe 
             src={`https://playcanv.as/p/JZ9XfrxE/?id=${activeArDishId}`}
-            style={{ width: '100%', flexGrow: 1, border: 'none' }}
-            allow="camera; xr-spatial-tracking; fullscreen" // Crucial for AR permissions
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              border: 'none',
+              display: 'block' // Prevents default inline bottom margin
+            }}
+            allow="camera; xr-spatial-tracking; fullscreen" 
             title="AR Dish Viewer"
           />
         </div>
