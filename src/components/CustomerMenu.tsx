@@ -56,39 +56,89 @@ export function CustomerMenu() {
     <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
       <h1>Our Menu</h1>
       
-      <div style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-        {dishes.map((dish) => (
-          <div key={dish.id} style={{ border: '1px solid #ddd', padding: '15px', borderRadius: '8px' }}>
-            
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <h2 style={{ margin: 0 }}>{dish.dish_name}</h2>
-              {/* Assuming price is stored as an integer of cents, we format it. If stored as decimal, adjust accordingly. */}
-              
-            </div>
+      <div
+  style={{
+    display: "flex",
+    flexDirection: "column",
+    gap: "120px",
+    padding: "80px",
+    backgroundImage: "url('/finalimage.png)", // your texture image
+    backgroundSize: "cover",
+    backgroundPosition: "center",
+    backgroundRepeat: "no-repeat"
+  }}
+>
+  {dishes.map((dish, index) => (
+    <div
+      key={dish.id}
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        flexDirection: index % 2 === 0 ? "row" : "row-reverse",
+        gap: "80px"
+      }}
+    >
+      
+      {/* Dish Image */}
+      {/* <img
+        src={dish.image}
+        alt={dish.dish_name}
+        style={{
+          width: "300px",
+          height: "300px",
+          objectFit: "cover",
+          borderRadius: "50%",
+          boxShadow: "0 20px 40px rgba(0,0,0,0.25)"
+        }}
+      /> */}
 
-            
+      {/* Text Content */}
+      <div
+        style={{
+          maxWidth: "420px",
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px"
+        }}
+      >
+        <h2
+          style={{
+            fontSize: "42px",
+            fontWeight: "500",
+            margin: 0,
+            color: "#3b2e2a",
+            fontFamily: "serif"
+          }}
+        >
+          {dish.dish_name}
+        </h2>
 
-            {/* ACTION REQUIRED: See the CTO Challenge below regarding this button */}
-            <button 
-              onClick={() => setActiveArDishId(dish.id)} // Open the modal
-              style={{ 
-                marginTop: '10px', 
-                padding: '10px', 
-                backgroundColor: '#007bff', 
-                color: 'white', 
-                border: 'none', 
-                borderRadius: '4px', 
-                width: '100%',
-                cursor: 'pointer' 
-              }}
-            >
-              View in AR
-            </button>
-            
-          </div>
-        ))}
+        
+
+        {/* View in AR Button */}
+        <button
+          onClick={() => setActiveArDishId(dish.id)}
+          style={{
+            marginTop: "15px",
+            padding: "14px 28px",
+            background: "linear-gradient(135deg,#c84c3c,#9e2e26)",
+            color: "white",
+            border: "none",
+            borderRadius: "30px",
+            fontSize: "16px",
+            fontWeight: "500",
+            cursor: "pointer",
+            width: "180px",
+            boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
+          }}
+        >
+          View in AR →
+        </button>
       </div>
-      {/* --- AR Iframe Modal Overlay --- */}
+    </div>
+  ))}
+</div>
       {/* --- AR Iframe Modal Overlay --- */}
       {activeArDishId && (
         <div style={{
