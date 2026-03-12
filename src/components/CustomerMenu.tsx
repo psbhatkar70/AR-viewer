@@ -71,6 +71,8 @@ export function CustomerMenu() {
   {dishes.map((dish, index) => (
     <div
       key={dish.id}
+
+      
       style={{
         display: "flex",
         alignItems: "center",
