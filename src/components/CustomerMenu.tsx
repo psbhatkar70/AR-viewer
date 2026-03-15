@@ -101,7 +101,45 @@ export function CustomerMenu() {
               >
                 View in AR →
               </button>
-              <iframe 
+            </div>
+          </div>
+        ))}
+        <div>
+           {activeArDishId && (
+        <div style={{
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          width: '100%',
+          height: '100%', // Use 100% instead of 100vh to avoid mobile toolbar clipping
+          backgroundColor: 'black',
+          zIndex: 9999, 
+        }}>
+          
+          {/* Floating Close Button - Absolutely positioned OVER the iframe */}
+          <button 
+            onClick={() => setActiveArDishId(null)} 
+            style={{
+              position: 'absolute',
+              top: '20px',
+              right: '20px',
+              zIndex: 10000, // Must be higher than the container
+              padding: '12px 20px',
+              backgroundColor: 'rgba(220, 53, 69, 0.9)', // Slight transparency looks modern
+              color: 'white',
+              border: 'none',
+              borderRadius: '8px',
+              fontWeight: 'bold',
+              cursor: 'pointer',
+              boxShadow: '0 4px 10px rgba(0,0,0,0.5)', // Drop shadow ensures visibility over any AR background
+              backdropFilter: 'blur(4px)' // Optional: Premium glassmorphism effect
+            }}
+          >
+            ✕ Close
+          </button>
+
+          {/* The PlayCanvas Iframe */}
+          <iframe 
             src={`https://playcanv.as/p/JZ9XfrxE/?id=${activeArDishId}`}
             style={{ 
               width: '100%', 
@@ -112,9 +150,9 @@ export function CustomerMenu() {
             allow="camera; xr-spatial-tracking; fullscreen" 
             title="AR Dish Viewer"
           />
-            </div>
-          </div>
-        ))}
+        </div>
+      )}
+        </div>
       </div>
   );
 }
