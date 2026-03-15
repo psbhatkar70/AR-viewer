@@ -84,7 +84,7 @@ export function CustomerMenu() {
             <div className="dish-info">
               <h2 
               style={{
-            fontSize: "42px",
+            fontSize: "25px",
             fontWeight: "500",
             margin: 0,
             fontFamily: "serif"
@@ -105,7 +105,7 @@ export function CustomerMenu() {
                   fontSize: "14px",
                   fontWeight: "500",
                   cursor: "pointer",
-                  width: "150px",
+                  width: "45%",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
                 }}
               >
