@@ -79,7 +79,7 @@ export function CustomerMenu() {
 
             {/* Text Content */}
             <div className="dish-info">
-              <h2 style={{ fontSize: "42px", fontWeight: "500", margin: 0, color: "#3b2e2a", fontFamily: "serif" }}>
+              <h2 style={{ fontSize: "30px", fontWeight: "500", margin: 0, color: "#3b2e2a", fontFamily: "serif" }}>
                 {dish.dish_name}
               </h2>
 
@@ -92,10 +92,10 @@ export function CustomerMenu() {
                   color: "white",
                   border: "none",
                   borderRadius: "30px",
-                  fontSize: "16px",
+                  fontSize: "14px",
                   fontWeight: "500",
                   cursor: "pointer",
-                  width: "180px",
+                  width: "150px",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
                 }}
               >

@@ -3,20 +3,20 @@
   display: flex;
   flex-direction: column;
   gap: 60px; /* Reduced gap for mobile */
-  padding: 20px; /* Reduced padding for mobile */
+  padding: 10px; /* Reduced padding for mobile */
 }
 
 .dish-row {
   display: flex;
-  flex-direction: column; /* Stack image on top of text */
+  flex-direction: row; /* Stack image on top of text */
   align-items: center;
   text-align: center; /* Center text on mobile */
-  gap: 30px;
+  gap: 10px;
 }
 
 .dish-image {
-  width: 250px; /* Slightly smaller for mobile screens */
-  height: 250px;
+  width: 40%; /* Slightly smaller for mobile screens */
+  height: 40%;
   object-fit: cover;
   border-radius: 50%;
   box-shadow: 0 15px 30px rgba(0,0,0,0.2);
@@ -29,7 +29,9 @@
   align-items: center; /* Center the button on mobile */
   gap: 15px;
 }
-
+.dish-row.reverse {
+    flex-direction: row-reverse;
+  }
 /* --- DESKTOP UPGRADE (Screens wider than 768px) --- */
 @media (min-width: 768px) {
   .menu-container {
