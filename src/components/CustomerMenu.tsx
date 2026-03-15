@@ -106,7 +106,7 @@ export function CustomerMenu() {
                   fontSize: "10px",
                   fontWeight: "500",
                   cursor: "pointer",
-                  width: "45%",
+                  width: "55%",
                   boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
                 }}
               >
