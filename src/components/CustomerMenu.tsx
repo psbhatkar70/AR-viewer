@@ -85,6 +85,7 @@ export function CustomerMenu() {
               <h2 
               style={{
             fontSize: "25px",
+            width: "55%",
             fontWeight: "500",
             margin: 0,
             fontFamily: "serif"
@@ -102,7 +103,7 @@ export function CustomerMenu() {
                   color: "white",
                   border: "none",
                   borderRadius: "30px",
-                  fontSize: "14px",
+                  fontSize: "10px",
                   fontWeight: "500",
                   cursor: "pointer",
                   width: "45%",
