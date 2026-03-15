@@ -56,14 +56,17 @@ export function CustomerMenu() {
   return (
     <div
         className="menu-container"
-        style={{
-          backgroundImage: "url('/finalimage.png')",
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          /* ARCHITECTURE NOTE: Fixed attachment prevents the background from stretching weirdly on long scrolls */
-          backgroundAttachment: "fixed" 
-        }}
+      style={{
+        minHeight: "100vh", // Ensures full screen height even with empty/small menus
+        backgroundImage: "url('/finalimage.png')",
+        backgroundRepeat: "repeat-y", // Tiles the image vertically without jerks
+        backgroundSize: "100% auto", // Fits exact width, scales height proportionally
+        backgroundPosition: "top center" // Anchors the first tile to the very top
+      }}
       >
+        <h1>
+          Our Menu
+        </h1>
         {dishes.map((dish, index) => (
           <div
             key={dish.id}
@@ -79,7 +82,14 @@ export function CustomerMenu() {
 
             {/* Text Content */}
             <div className="dish-info">
-              <h2 style={{ fontSize: "30px", fontWeight: "500", margin: 0, color: "#3b2e2a", fontFamily: "serif" }}>
+              <h2 
+              style={{
+            fontSize: "42px",
+            fontWeight: "500",
+            margin: 0,
+            fontFamily: "serif"
+          }}
+              >
                 {dish.dish_name}
               </h2>
 

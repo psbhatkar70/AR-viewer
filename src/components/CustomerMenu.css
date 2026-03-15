@@ -2,8 +2,7 @@
 .menu-container {
   display: flex;
   flex-direction: column;
-  gap: 60px; /* Reduced gap for mobile */
-  padding: 10px; /* Reduced padding for mobile */
+  gap: 20px; /* Reduced gap for mobile */
 }
 
 .dish-row {
@@ -11,9 +10,13 @@
   flex-direction: row; /* Stack image on top of text */
   align-items: center;
   text-align: center; /* Center text on mobile */
-  gap: 10px;
+  gap: 15px;
+  color: #000000;
 }
-
+.dish-row h2, 
+.dish-row p {
+  color: inherit; 
+}
 .dish-image {
   width: 40%; /* Slightly smaller for mobile screens */
   height: 40%;
@@ -31,6 +34,7 @@
 }
 .dish-row.reverse {
     flex-direction: row-reverse;
+    color: #ffffff;
   }
 /* --- DESKTOP UPGRADE (Screens wider than 768px) --- */
 @media (min-width: 768px) {
