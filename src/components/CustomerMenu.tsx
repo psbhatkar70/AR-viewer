@@ -11,6 +11,7 @@ interface MenuDish {
   fact: string;
   chef_word: string;
   glb_url: string;
+  image_url: string; // <-- Add this line
 }
 
 export function CustomerMenu() {
@@ -31,7 +32,7 @@ export function CustomerMenu() {
       // Fetch only the necessary columns for the specific restaurant
       const { data, error: fetchError } = await supabase
         .from('dishes')
-        .select('id, dish_name, price, ingredients, fact, chef_word, glb_url')
+        .select('id, dish_name, price, ingredients, fact, chef_word, glb_url ,image_url')
         .eq('restaurant_id', restaurant_id);
 
       if (fetchError) {
@@ -83,17 +84,17 @@ export function CustomerMenu() {
     >
       
       {/* Dish Image */}
-      {/* <img
-        src={dish.image}
+      <img
+        src={dish.image_url} // <-- Fixed mapping here
         alt={dish.dish_name}
         style={{
-          width: "300px",
-          height: "300px",
+          width: "200px",
+          height: "200px",
           objectFit: "cover",
           borderRadius: "50%",
           boxShadow: "0 20px 40px rgba(0,0,0,0.25)"
         }}
-      /> */}
+      />
 
       {/* Text Content */}
       <div
