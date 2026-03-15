@@ -64,9 +64,9 @@ export function CustomerMenu() {
         backgroundPosition: "top center" // Anchors the first tile to the very top
       }}
       >
-        {/* <h1>
+        <h1>
           Our Menu
-        </h1> */}
+        </h1>
         {dishes.map((dish, index) => (
           <div
             key={dish.id}
