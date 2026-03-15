@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../supabase';
-
+import './CustomerMenu.css';
 // Strict typing for the read-only customer view
 interface MenuDish {
   id: string;
@@ -54,142 +54,56 @@ export function CustomerMenu() {
 
   // ... (Rendering logic below)
   return (
-    <div style={{ padding: '20px', maxWidth: '600px', margin: '0 auto' }}>
-      <h1>Our Menu</h1>
-      
-      <div
-  style={{
-    display: "flex",
-    flexDirection: "column",
-    gap: "120px",
-    padding: "80px",
-    backgroundImage: "url('/finalimage.png)", // your texture image
-    backgroundSize: "cover",
-    backgroundPosition: "center",
-    backgroundRepeat: "no-repeat"
-  }}
->
-  {dishes.map((dish, index) => (
     <div
-      key={dish.id}
-
-      
-      style={{
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "space-between",
-        flexDirection: index % 2 === 0 ? "row" : "row-reverse",
-        gap: "80px"
-      }}
-    >
-      
-      {/* Dish Image */}
-      <img
-        src={dish.image_url} // <-- Fixed mapping here
-        alt={dish.dish_name}
+        className="menu-container"
         style={{
-          width: "200px",
-          height: "200px",
-          objectFit: "cover",
-          borderRadius: "50%",
-          boxShadow: "0 20px 40px rgba(0,0,0,0.25)"
-        }}
-      />
-
-      {/* Text Content */}
-      <div
-        style={{
-          maxWidth: "420px",
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px"
+          backgroundImage: "url('/finalimage.png')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          /* ARCHITECTURE NOTE: Fixed attachment prevents the background from stretching weirdly on long scrolls */
+          backgroundAttachment: "fixed" 
         }}
       >
-        <h2
-          style={{
-            fontSize: "42px",
-            fontWeight: "500",
-            margin: 0,
-            color: "#3b2e2a",
-            fontFamily: "serif"
-          }}
-        >
-          {dish.dish_name}
-        </h2>
-
-        
-
-        {/* View in AR Button */}
-        <button
-          onClick={() => setActiveArDishId(dish.id)}
-          style={{
-            marginTop: "15px",
-            padding: "14px 28px",
-            background: "linear-gradient(135deg,#c84c3c,#9e2e26)",
-            color: "white",
-            border: "none",
-            borderRadius: "30px",
-            fontSize: "16px",
-            fontWeight: "500",
-            cursor: "pointer",
-            width: "180px",
-            boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
-          }}
-        >
-          View in AR →
-        </button>
-      </div>
-    </div>
-  ))}
-</div>
-      {/* --- AR Iframe Modal Overlay --- */}
-      {activeArDishId && (
-        <div style={{
-          position: 'fixed',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%', // Use 100% instead of 100vh to avoid mobile toolbar clipping
-          backgroundColor: 'black',
-          zIndex: 9999, 
-        }}>
-          
-          {/* Floating Close Button - Absolutely positioned OVER the iframe */}
-          <button 
-            onClick={() => setActiveArDishId(null)} 
-            style={{
-              position: 'absolute',
-              top: '20px',
-              right: '20px',
-              zIndex: 10000, // Must be higher than the container
-              padding: '12px 20px',
-              backgroundColor: 'rgba(220, 53, 69, 0.9)', // Slight transparency looks modern
-              color: 'white',
-              border: 'none',
-              borderRadius: '8px',
-              fontWeight: 'bold',
-              cursor: 'pointer',
-              boxShadow: '0 4px 10px rgba(0,0,0,0.5)', // Drop shadow ensures visibility over any AR background
-              backdropFilter: 'blur(4px)' // Optional: Premium glassmorphism effect
-            }}
+        {dishes.map((dish, index) => (
+          <div
+            key={dish.id}
+            /* Dynamically apply the 'reverse' class only to odd rows */
+            className={`dish-row ${index % 2 !== 0 ? 'reverse' : ''}`}
           >
-            ✕ Close
-          </button>
+            {/* Dish Image */}
+            <img
+              src={dish.image_url}
+              alt={dish.dish_name}
+              className="dish-image"
+            />
 
-          {/* The PlayCanvas Iframe */}
-          <iframe 
-            src={`https://playcanv.as/p/JZ9XfrxE/?id=${activeArDishId}`}
-            style={{ 
-              width: '100%', 
-              height: '100%', 
-              border: 'none',
-              display: 'block' // Prevents default inline bottom margin
-            }}
-            allow="camera; xr-spatial-tracking; fullscreen" 
-            title="AR Dish Viewer"
-          />
-        </div>
-      )}
-    </div>
+            {/* Text Content */}
+            <div className="dish-info">
+              <h2 style={{ fontSize: "42px", fontWeight: "500", margin: 0, color: "#3b2e2a", fontFamily: "serif" }}>
+                {dish.dish_name}
+              </h2>
+
+              {/* View in AR Button */}
+              <button
+                onClick={() => setActiveArDishId(dish.id)}
+                style={{
+                  padding: "14px 28px",
+                  background: "linear-gradient(135deg,#c84c3c,#9e2e26)",
+                  color: "white",
+                  border: "none",
+                  borderRadius: "30px",
+                  fontSize: "16px",
+                  fontWeight: "500",
+                  cursor: "pointer",
+                  width: "180px",
+                  boxShadow: "0 10px 20px rgba(0,0,0,0.2)"
+                }}
+              >
+                View in AR →
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
   );
 }

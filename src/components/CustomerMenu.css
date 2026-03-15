@@ -1,0 +1,60 @@
+/* --- MOBILE FIRST (Default) --- */
+.menu-container {
+  display: flex;
+  flex-direction: column;
+  gap: 60px; /* Reduced gap for mobile */
+  padding: 20px; /* Reduced padding for mobile */
+}
+
+.dish-row {
+  display: flex;
+  flex-direction: column; /* Stack image on top of text */
+  align-items: center;
+  text-align: center; /* Center text on mobile */
+  gap: 30px;
+}
+
+.dish-image {
+  width: 250px; /* Slightly smaller for mobile screens */
+  height: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+}
+
+.dish-info {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center the button on mobile */
+  gap: 15px;
+}
+
+/* --- DESKTOP UPGRADE (Screens wider than 768px) --- */
+@media (min-width: 768px) {
+  .menu-container {
+    gap: 120px;
+    padding: 80px;
+  }
+
+  .dish-row {
+    flex-direction: row; /* Side-by-side on desktop */
+    text-align: left;
+    gap: 80px;
+  }
+
+  /* The alternating reverse logic */
+  .dish-row.reverse {
+    flex-direction: row-reverse;
+  }
+
+  .dish-image {
+    width: 300px;
+    height: 300px;
+  }
+
+  .dish-info {
+    max-width: 420px;
+    align-items: flex-start; /* Left-align the button on desktop */
+  }
+}
