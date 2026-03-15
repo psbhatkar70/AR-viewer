@@ -2,7 +2,7 @@
 .menu-container {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Reduced gap for mobile */
+  gap: 35px; /* Reduced gap for mobile */
 }
 
 .dish-row {
