@@ -101,6 +101,17 @@ export function CustomerMenu() {
               >
                 View in AR →
               </button>
+              <iframe 
+            src={`https://playcanv.as/p/JZ9XfrxE/?id=${activeArDishId}`}
+            style={{ 
+              width: '100%', 
+              height: '100%', 
+              border: 'none',
+              display: 'block' // Prevents default inline bottom margin
+            }}
+            allow="camera; xr-spatial-tracking; fullscreen" 
+            title="AR Dish Viewer"
+          />
             </div>
           </div>
         ))}
