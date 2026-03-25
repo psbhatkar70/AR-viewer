@@ -4,7 +4,10 @@
   flex-direction: column;
   gap: 35px; /* Reduced gap for mobile */
 }
-
+body {
+  margin: 0;
+  padding: 0;
+}
 .dish-row {
   display: flex;
   flex-direction: row; /* Stack image on top of text */
